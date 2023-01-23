@@ -1,5 +1,5 @@
 //* IMPORT SHEMA SAUCE
-const sauce = require("../models/Sauce");
+const Sauce = require("../models/Sauce");
 
 //* INTERACTION AVEC LE SYSTEME DE FICHIERSDU SERVEUR
 const fs = require("fs");
@@ -29,10 +29,17 @@ exports.sauceCreated = (req, res, next) => {
 //* GET
 // router.get("/", (req, res, next) => {});
 exports.sauceAllRead = (req, res, next) => {
-  
+//   Sauce.find(Sauce)
+//     .then((thing) => res.status(200).json(thing))
+//     .catch((error) => res.status(404).json({ error }));
 };
+
 // router.get("/:id", (req, res, next) => {});
-exports.sauceOneRead = (req, res, next) => {};
+exports.sauceOneRead = (req, res, next) => {
+//   Sauce.findOne({ _id: req.params.id })
+//     .then((thing) => res.status(200).json(thing))
+//     .catch((error) => res.status(404).json({ error }));
+};
 
 //* PUT => ⚠️ le post fonctionne pas donc ne peux pas tester le PUT
 // router.put("/:id", (req, res, next) => {});
