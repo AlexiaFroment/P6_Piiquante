@@ -11,15 +11,15 @@ const ctrlSauce = require("../controllers/ctrlSauce");
 //* ROUTES
 //* ⚠️ METTRE EN PLACE L'AUTH LORS DE L'ECRITURE DE TOUTES LES ROUTES ⚠️
 //POST => CREATE
-router.post("/sauces", auth, multer, ctrlSauce.sauceCreated);
-router.post("/sauces/:id/like", (req, res, next) => {});
+router.post("/", auth, multer, ctrlSauce.sauceCreated);
+router.post("/:id/like", (req, res, next) => {});
 
 //GET => READ
 router.get("/", auth, ctrlSauce.sauceAllRead);
 router.get("/:id", auth, ctrlSauce.sauceOneRead);
 
 //PUT => UPDATE
-router.put("/:id", auth, ctrlSauce.sauceUpdate);
+router.put("/:id", auth, multer, ctrlSauce.sauceUpdate);
 
 //DELETE => DELETE
 router.delete("/:id", auth, ctrlSauce.sauceDelete);
