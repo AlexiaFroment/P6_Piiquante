@@ -12,7 +12,11 @@ app.use(cors());
 //* ACCES AU CORPS DE LA REQUETE
 app.use(express.json());
 
-// //* ACCES AUX ROUTES
+//* IMPORT MORGAN
+const morgan = require("morgan");
+app.use(morgan('dev'));
+
+//* ACCES AUX ROUTES
 const routesUser = require("./routes/routesUser");
 app.use("/api/auth", routesUser);
 const routesSauce = require("./routes/routesSauce");

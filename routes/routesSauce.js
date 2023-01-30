@@ -7,16 +7,16 @@ const auth = require("../middleware/auth");
 const multer = require("../middleware/multer-config");
 
 const ctrlSauce = require("../controllers/ctrlSauce");
+const ctrlLike = require("../controllers/ctrlLike");
 
 //* ROUTES
-//* ⚠️ METTRE EN PLACE L'AUTH LORS DE L'ECRITURE DE TOUTES LES ROUTES ⚠️
 //POST => CREATE
 router.post("/", auth, multer, ctrlSauce.sauceCreated);
-router.post("/:id/like", (req, res, next) => {});
+router.post("/:id/like", auth, ctrlLike.sauceLike);
 
 //GET => READ
-router.get("/", auth, ctrlSauce.sauceAllRead);
-router.get("/:id", auth, ctrlSauce.sauceOneRead);
+router.get("/", auth, ctrlSauce.sauceReadAll);
+router.get("/:id", auth, ctrlSauce.sauceReadOne);
 
 //PUT => UPDATE
 router.put("/:id", auth, multer, ctrlSauce.sauceUpdate);
