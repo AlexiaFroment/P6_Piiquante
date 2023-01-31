@@ -39,7 +39,7 @@ exports.sauceReadOne = (req, res, next) => {
     .catch((error) => res.status(404).json({ error }));
 };
 
-//* PUT => ⚠️ le post fonctionne pas donc ne peux pas tester le PUT
+//* PUT 
 // router.put("/:id", (req, res, next) => {});
 // ⚠️ Format de la requête change si l'utilisateur nous envoie un fichier ou non => const sauceSend
 exports.sauceUpdate = (req, res, next) => {
@@ -70,7 +70,7 @@ exports.sauceUpdate = (req, res, next) => {
     .catch((error) => res.status(400).json({ error }));
 };
 
-//* DELETE => ⚠️ le post fonctionne pas donc ne peux pas tester le DELETE
+//* DELETE 
 // router.delete("/:id", (req, res, next) => {});
 exports.sauceDelete = (req, res, next) => {
   Sauce.findOne({ _id: req.params.id })

@@ -4,10 +4,6 @@ const Sauce = require("../models/Sauce");
 //* POST
 // router.post("/:id/like", (req, res, next) => {});
 exports.sauceLike = (req, res, next) => {
-  console.log("je suis dans le contrôleur like");
-  console.log(req.params);
-  console.log(req.body);
-
   //*GET THE SAUCE => FINDONE ON ID
   Sauce.findOne({ _id: req.params.id })
     .then((sauce) => {
