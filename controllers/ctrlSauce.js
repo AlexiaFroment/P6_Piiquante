@@ -4,7 +4,7 @@ const Sauce = require("../models/Sauce");
 //* INTERACTION AVEC LE SYSTEME DE FICHIERS DU SERVEUR
 const fs = require("fs");
 
-//* POST 
+//* POST
 // router.post("/", auth, ctrlSauce.sauceCreated);
 exports.sauceCreated = (req, res, next) => {
   const sauceSend = JSON.parse(req.body.sauce);
@@ -39,20 +39,33 @@ exports.sauceReadOne = (req, res, next) => {
     .catch((error) => res.status(404).json({ error }));
 };
 
-//* PUT 
+//* PUT
 // router.put("/:id", (req, res, next) => {});
 // ⚠️ Format de la requête change si l'utilisateur nous envoie un fichier ou non => const sauceSend
 exports.sauceUpdate = (req, res, next) => {
+
   const sauceSend = req.file
-    ? {
+  ? {
         ...JSON.parse(req.body.sauce),
         imageUrl: `${req.protocol}://${req.get("host")}/images/${
           req.file.filename
         }`,
       }
     : { ...req.body };
-
   delete sauceSend._userId;
+
+  if (req.file) {
+    Sauce.findOne({ _id: req.params.id })
+      .then((sauce) => {
+        const filename = sauce.imageUrl.split("/images/")[1];
+        fs.unlink(`images/${filename}`, (error) => {
+          if(error) throw error;
+        });
+      })
+      .catch((error) => res.status(400).json({ error }));
+  } else {
+    console.log("FALSE");
+  }
 
   Sauce.findOne({ _id: req.params.id })
     .then((sauce) => {
@@ -70,7 +83,7 @@ exports.sauceUpdate = (req, res, next) => {
     .catch((error) => res.status(400).json({ error }));
 };
 
-//* DELETE 
+//* DELETE
 // router.delete("/:id", (req, res, next) => {});
 exports.sauceDelete = (req, res, next) => {
   Sauce.findOne({ _id: req.params.id })

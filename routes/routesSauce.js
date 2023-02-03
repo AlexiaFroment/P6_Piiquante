@@ -2,7 +2,7 @@
 const express = require("express");
 const router = express.Router();
 
-//* ⚠️ METTRE EN PLACE L'AUTH LORS DE L'ECRITURE DES ROUTES ⚠️
+//* ⚠️ MEP MIDDLEWARE AUTH ET MULTER ⚠️
 const auth = require("../middleware/auth");
 const multer = require("../middleware/multer-config");
 
